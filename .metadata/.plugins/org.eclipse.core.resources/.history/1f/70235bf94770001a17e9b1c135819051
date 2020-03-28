@@ -1,0 +1,61 @@
+package KOKO;
+import java.util.Scanner;
+import java.util.Stack;
+public enum Operations {
+	
+
+	private final static int MAX_VALUE = 1000;
+	private final static int MIN_VALUE = 1000;
+	
+//les constantes PLUS, MOINS, MULT et DIV,
+	PLUS('+') { 
+		public double eval(double a,double b) {
+			
+			if (Math.abs(a + b) > -MIN_VALUE && (a + b) < MAX_VALUE) {
+
+			return a + b ;}
+			else {
+				throw new ArithmeticException("opreandes non inclus dans l'intervalle");
+			
+		}
+	}
+		}
+	,
+	MOINS('-') {
+		public double eval(double a,double b) {
+			
+			return a - b;
+		}
+	},
+	MULT('*') {
+		public double eval(double a,double b) {
+			return a * b;
+		}
+	},
+	DIV('/') {
+		public double eval(double a,double b) throws ArithmeticException {
+			if (b == 0)
+				throw new ArithmeticException("denominateur egal 0");
+			else
+				return a / b;
+		}
+	};
+//l’attribut symbole représentant le symbole de l’opération (+, -, *​)
+	private char symbole;
+
+//constructeur prenant en paramètre le symbole de l’opération
+	Operations(char symbole){
+		//If someone removes or adds a value, some of test fails.
+		String symboles = "+-*/";
+		if (symboles.indexOf(symbole)==-1)
+			throw new IllegalArgumentException();
+		else
+			this.symbole = symbole;
+	}
+
+	public char getSymbol(){
+		return symbole;
+	}
+// la méthode abstraite eval retournant le résultat de l’évaluation de l’opération sur deux opérande
+	public abstract double eval(double val1, double val2) throws ArithmeticException;
+}
