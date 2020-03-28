@@ -1,0 +1,56 @@
+package test;
+
+
+
+import org.junit.Test;
+
+
+
+import org.junit.Before;
+
+
+import KOKO.MoteurRPN;
+import KOKO.Operations;
+
+public class ExceptionTest {
+	private MoteurRPN M;
+
+	@Before
+	public void initialize() {
+		M = new MoteurRPN();
+
+	}
+
+	
+	// On test si le Moteur verifie bien qu'on a pas assez d'operandes
+			@Test(expected = ArithmeticException.class)
+			public void testEnregistrerOperandeException() {
+
+				double val1 = 3;
+				M.enregistrerOperande(val1);
+
+				M.appliquerOperation(Operations.MULT);
+
+			}
+			
+			
+			@Test (expected = DivisionParZeroException.class)
+			public void TestDivisionSurZero(){
+				
+				double val1=77,val2=0;
+				M.enregistrerOperande(val2);
+				M.enregistrerOperande(val1);
+				M.appliquerOperation(Operations.DIV);
+			}
+			
+			@Test (expected = Exception.class)
+			public void Testmax(){
+				
+				double val1=111111111,val2=999999999;
+				M.enregistrerOperande(val2);
+				M.enregistrerOperande(val1);
+				M.appliquerOperation(Operations.PLUS);
+			}
+
+			
+}
