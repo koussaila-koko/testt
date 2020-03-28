@@ -1,0 +1,14 @@
+package KOKO.Exceptions;
+
+public class MinMaxException{
+	
+	/**
+	 * throw new MinMaxException();
+	 */
+	private static final long serialVersionUID = 7032173410409565137L;
+
+	public MinMaxException() {
+		super("opreandes non inclus dans l'intervalle ");
+	}
+
+}
