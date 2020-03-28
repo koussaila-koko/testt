@@ -1,0 +1,45 @@
+package KOKO;
+import java.util.Stack;
+/**
+*classe Interpreteur.
+*Implémentation d'un interpréteur .
+*qui supporte uniquement les commandes
+*undo et quit. La commande quit stoppe le programme.
+* La commande undo supprime la dernière
+*commande de l’historique.
+*Vous utiliserez le pattern Command pour implémenter
+*les actions.
+* @author Koussaila HAMMOUCHE.
+*/
+public class Interpreteur {
+	protected Stack<Double> operandes;
+	protected Stack<Stack<Double>> operandesPrecedent;
+	
+	
+	public Interpreteur() {
+		operandes = new Stack<Double>();
+		operandesPrecedent = new Stack<Stack<Double>>();
+	}
+
+	public void quit() {
+		System.out.println("good bye");
+		System.exit(0);
+		
+	}
+
+	public void undo() {
+		
+
+		if(operandesPrecedent.size()>1) {
+			operandesPrecedent.pop();
+			operandes=operandesPrecedent.peek();
+		}else {
+			operandesPrecedent.clear();
+			operandes.clear();
+		}
+		
+
+	}
+
+
+}
